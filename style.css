@@ -1,0 +1,86 @@
+body {
+    background-color: var(--tg-theme-bg-color, #1a1e29);
+    color: var(--tg-theme-text-color, #ffffff);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 15px;
+}
+
+.container {
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header h2 {
+    margin: 0;
+    color: #0088cc;
+}
+
+select {
+    background: #2b3240;
+    color: white;
+    border: 1px solid #3f4a5c;
+    padding: 8px 12px;
+    border-radius: 8px;
+    outline: none;
+}
+
+.user-input-card {
+    background: #232936;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #3f4a5c;
+    background: #1a1e29;
+    color: white;
+    outline: none;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.product-card {
+    background: #232936;
+    border: 2px solid #3f4a5c;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.product-card:hover {
+    border-color: #0088cc;
+}
+
+.product-name {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.product-price {
+    color: #4cd964;
+    font-weight: bold;
+}
