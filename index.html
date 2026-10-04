@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIXA Shop - MLBB</title>
+    <!-- Telegram Web App SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Yuqori qism: Profil va valyuta tanlash -->
+        <div class="header">
+            <h2>💎 TIXA Shop</h2>
+            <select id="currency-select" onchange="changeCurrency()">
+                <option value="UZS">UZS (so'm)</option>
+                <option value="RUB">RUB (₽)</option>
+                <option value="USD">USD ($)</option>
+            </select>
+        </div>
+
+        <!-- MLBB ID kiritish qismi -->
+        <div class="user-input-card">
+            <h3>MLBB Hisob ma'lumotlari</h3>
+            <div class="input-group">
+                <input type="number" id="mlbb-id" placeholder="User ID (masalan: 12345678)">
+                <input type="number" id="zone-id" placeholder="Zone ID (masalan: 1234)">
+            </div>
+        </div>
+
+        <!-- Tovarlar katalogi -->
+        <h3>Tovarlar</h3>
+        <div class="products-grid">
+            <div class="product-card" onclick="selectProduct('Weekly Pass', 1.99)">
+                <div class="product-name">Weekly Diamond Pass</div>
+                <div class="product-price" id="price-pass">1.99 $</div>
+            </div>
+            <div class="product-card" onclick="selectProduct('86 Diamonds', 1.40)">
+                <div class="product-name">86 Diamonds 💎</div>
+                <div class="product-price" id="price-86">1.40 $</div>
+            </div>
+            <div class="product-card" onclick="selectProduct('257 Diamonds', 4.00)">
+                <div class="product-name">257 Diamonds 💎</div>
+                <div class="product-price" id="price-257">4.00 $</div>
+            </div>
+            <div class="product-card" onclick="selectProduct('706 Diamonds', 10.00)">
+                <div class="product-name">706 Diamonds 💎</div>
+                <div class="product-price" id="price-706">10.00 $</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
