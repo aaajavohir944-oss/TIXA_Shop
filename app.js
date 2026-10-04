@@ -52,4 +52,4 @@ function selectProduct(productName, priceUsd) {
 }
 
 // Dastlabki narxlarni o'rnatish
-updatePrices();
+updatePrices(); 
