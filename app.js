@@ -1,55 +1,60 @@
-// Telegram Web App obyekti
 const tg = window.Telegram.WebApp;
-tg.expand(); // Ekran bo'ylab yozish
+tg.expand();
 
-// Valyuta kurslari (Bazaviy narx USD da)
-const rates = {
-    "USD": 1,
-    "UZS": 12800, // 1 USD = 12,800 UZS
-    "RUB": 95     // 1 USD = 95 RUB
-};
+let selectedProductData = null;
 
-let currentCurrency = "UZS";
+// Telegram foydalanuvchi ismini chiqarish
+document.addEventListener('DOMContentLoaded', () => {
+    if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+        const user = tg.initDataUnsafe.user;
+        document.getElementById('user-fullname').innerText = `${user.first_name} ${user.last_name || ''}`;
+    }
+});
 
-// Valyuta o'zgarganda narxlarni hisoblash
-function changeCurrency() {
-    currentCurrency = document.getElementById('currency-select').value;
-    updatePrices();
+// Tovar tanlash
+function selectProduct(cardElement, name, price) {
+    document.querySelectorAll('.product-card').forEach(el => el.classList.remove('selected'));
+    cardElement.classList.add('selected');
+
+    selectedProductData = { name, price };
+    
+    const buyBtn = document.getElementById('buy-btn');
+    buyBtn.removeAttribute('disabled');
+    buyBtn.innerText = `Sotib olish — ${price.toLocaleString()} UZS`;
 }
 
-function updatePrices() {
-    const rate = rates[currentCurrency];
-    const symbol = currentCurrency === 'UZS' ? "so'm" : (currentCurrency === 'RUB' ? "₽" : "$");
+// Orderni yuborish
+function submitOrder() {
+    const userId = document.getElementById('mlbb-id').value.trim();
+    const zoneId = document.getElementById('zone-id').value.trim();
 
-    document.getElementById('price-pass').innerText = (1.99 * rate).toLocaleString() + " " + symbol;
-    document.getElementById('price-86').innerText = (1.40 * rate).toLocaleString() + " " + symbol;
-    document.getElementById('price-257').innerText = (4.00 * rate).toLocaleString() + " " + symbol;
-    document.getElementById('price-706').innerText = (10.00 * rate).toLocaleString() + " " + symbol;
-}
-
-// Tovar tanlanganda Telegram Botga ma'lumot yuborish
-function selectProduct(productName, priceUsd) {
-    const mlbbId = document.getElementById('mlbb-id').value;
-    const zoneId = document.getElementById('zone-id').value;
-
-    if (!mlbbId || !zoneId) {
-        alert("Iltimos, avval MLBB User ID va Zone ID raqamingizni kiriting!");
+    if (!userId || !zoneId) {
+        tg.showAlert("⚠️ Iltimos, O'YINCHI ID va SERVER ID ni kiriting!");
         return;
     }
 
-    const priceConverted = (priceUsd * rates[currentCurrency]).toLocaleString();
+    if (!selectedProductData) {
+        tg.showAlert("Iltimos, mahsulotni tanlang!");
+        return;
+    }
 
-    const orderData = {
-        product: productName,
-        price: priceConverted,
-        currency: currentCurrency,
-        id: mlbbId,
-        zone: zoneId
+    const payload = {
+        user_id: userId,
+        zone_id: zoneId,
+        product: selectedProductData.name,
+        price: selectedProductData.price
     };
 
-    // Botga ma'lumotni JSON formatda qaytarish
-    tg.sendData(JSON.stringify(orderData));
+    tg.sendData(JSON.stringify(payload));
 }
 
-// Dastlabki narxlarni o'rnatish
-updatePrices(); 
+function checkAccount() {
+    const userId = document.getElementById('mlbb-id').value.trim();
+    const zoneId = document.getElementById('zone-id').value.trim();
+
+    if (userId && zoneId) {
+        tg.showAlert(`Tekshirilmoqda: ID ${userId} (${zoneId})`);
+    } else {
+        tg.showAlert("Iltimos, ID va Serverni to'liq kiriting!");
+    }
+}
