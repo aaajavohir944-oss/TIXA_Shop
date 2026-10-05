@@ -17,11 +17,19 @@ body {
     user-select: none;
 }
 
-.page-container {
+.page {
     padding: 12px;
 }
 
-/* USER PROFILE CARD */
+.section-title {
+    font-size: 11px;
+    color: var(--text-gray);
+    margin: 12px 0 6px 4px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+/* PROFIL CARD */
 .user-profile-card {
     background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
     border: 1px solid var(--border-color);
@@ -30,7 +38,6 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 16px;
 }
 
 .user-name {
@@ -60,21 +67,17 @@ body {
     cursor: pointer;
 }
 
-/* ID & SERVER CARDS */
+/* ID & SERVER */
 .id-card {
     background: var(--card-bg);
     border-radius: 16px;
     padding: 16px;
-    margin-bottom: 16px;
+    margin-top: 12px;
     border: 1px solid var(--border-color);
 }
 
-.input-field {
-    margin-bottom: 12px;
-}
-
 .input-field label {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--text-gray);
     display: block;
     margin-bottom: 6px;
@@ -89,6 +92,7 @@ body {
     color: white;
     box-sizing: border-box;
     font-size: 14px;
+    outline: none;
 }
 
 .server-group {
@@ -106,22 +110,23 @@ body {
     cursor: pointer;
 }
 
-/* REGION TABS */
+/* TABS */
 .region-tabs {
     display: flex;
     gap: 8px;
     overflow-x: auto;
-    padding-bottom: 12px;
+    padding-bottom: 6px;
 }
 
 .tab-btn {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     color: var(--text-gray);
-    padding: 8px 12px;
+    padding: 8px 14px;
     border-radius: 8px;
     white-space: nowrap;
     font-size: 12px;
+    cursor: pointer;
 }
 
 .tab-btn.active {
@@ -131,7 +136,7 @@ body {
     border-color: var(--accent-gold);
 }
 
-/* PRODUCT GRID */
+/* PRODUCTS */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -178,7 +183,41 @@ body {
     margin-top: 6px;
 }
 
-/* STICKY BUY BAR */
+/* HAMYON & PROFIL */
+.wallet-card, .menu-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 12px;
+}
+
+.wallet-amount {
+    font-size: 24px;
+    color: var(--accent-gold);
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.action-btn {
+    width: 100%;
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+}
+
+/* STICKY & NAV */
 .sticky-buy-bar {
     position: fixed;
     bottom: 60px;
@@ -208,7 +247,6 @@ body {
     cursor: not-allowed;
 }
 
-/* BOTTOM NAVIGATION */
 .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -239,4 +277,10 @@ body {
 
 .nav-item.active {
     color: var(--accent-gold);
+}
+
+.empty-text {
+    text-align: center;
+    color: var(--text-gray);
+    margin-top: 40px;
 }
