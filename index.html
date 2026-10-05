@@ -17,70 +17,78 @@
             <div class="user-info">
                 <span class="user-name" id="user-fullname">Foydalanuvchi</span>
                 <div class="balance-box">
-                    <span>Topup balance</span>
+                    <span id="txt-balance-label">Topup balance</span>
                     <strong id="user-balance">0 UZS</strong>
                 </div>
             </div>
             <button class="topup-btn" onclick="switchPage('wallet')">
-                <i class="fa-solid fa-plus"></i> To'ldirish
+                <i class="fa-solid fa-plus"></i> <span id="txt-topup-btn">To'ldirish</span>
             </button>
+        </div>
+
+        <!-- TIL VA VALYUTA SELEKTORI -->
+        <div class="section-title" id="txt-lang-title">TIL VA VALYUTA</div>
+        <div class="controls-row">
+            <!-- Tillar -->
+            <div class="pill-group">
+                <button class="pill-btn active" onclick="setLanguage('uz', this)">🇺🇿 UZ</button>
+                <button class="pill-btn" onclick="setLanguage('ru', this)">🇷🇺 RU</button>
+                <button class="pill-btn" onclick="setLanguage('en', this)">🇬🇧 EN</button>
+            </div>
+            <!-- Valyutalar -->
+            <div class="pill-group">
+                <button class="pill-btn active" onclick="setCurrency('UZS', this)">UZS</button>
+                <button class="pill-btn" onclick="setCurrency('USD', this)">USD ($)</button>
+                <button class="pill-btn" onclick="setCurrency('RUB', this)">RUB (₽)</button>
+            </div>
         </div>
 
         <!-- ID VA SERVER KIRITISH -->
         <div class="id-card">
             <div class="input-field">
-                <label><i class="fa-solid fa-user"></i> O'YINCHI ID</label>
-                <input type="number" id="mlbb-id" placeholder="O'yinchi ID kiriting">
+                <label><i class="fa-solid fa-user"></i> <span id="txt-label-id">O'YINCHI ID</span></label>
+                <input type="number" id="mlbb-id" placeholder="ID kiriting">
             </div>
             <div class="input-field">
-                <label><i class="fa-solid fa-server"></i> SERVER ID</label>
+                <label><i class="fa-solid fa-server"></i> <span id="txt-label-server">SERVER ID</span></label>
                 <div class="server-group">
                     <input type="number" id="zone-id" placeholder="Server ID kiriting">
-                    <button class="check-btn" onclick="checkAccount()">Tekshirish</button>
+                    <button class="check-btn" onclick="checkAccount()" id="txt-check-btn">Tekshirish</button>
                 </div>
             </div>
         </div>
 
-        <!-- MINTAQA VA TILLAR TABLARI -->
-        <div class="section-title">MINTAQA VA TILLAR</div>
-        <div class="region-tabs">
-            <button class="tab-btn active" onclick="selectTab(this)">uzUZB / 🌐 Global</button>
-            <button class="tab-btn" onclick="selectTab(this)">RU RU</button>
-            <button class="tab-btn" onclick="selectTab(this)">TURK TR</button>
-            <button class="tab-btn" onclick="selectTab(this)">ID ID</button>
-        </div>
-
         <!-- TOVARLAR SETKASI -->
-        <div class="section-title">MAHSULOTNI TANLANG</div>
+        <div class="section-title" id="txt-products-title">MAHSULOTNI TANLANG</div>
         <div class="products-grid">
-            <div class="product-card" onclick="selectProduct(this, 'Super Foydali Propusk', 10000)">
+            <div class="product-card" data-base-uzs="10000" data-name-uz="Super Foydali Propusk" data-name-ru="Супер Пропуск" data-name-en="Super Pass" onclick="selectProduct(this)">
                 <div class="prod-title">Super Foydali Propusk</div>
                 <div class="prod-price">10 000 UZS</div>
             </div>
 
-            <div class="product-card" onclick="selectProduct(this, 'Oylik elit pack', 53200)">
+            <div class="product-card" data-base-uzs="53200" data-name-uz="Oylik elit pack" data-name-ru="Ежемесячный элит пак" data-name-en="Monthly Elite Pack" onclick="selectProduct(this)">
                 <div class="prod-title">Oylik elit pack</div>
                 <div class="prod-price">53 200 UZS</div>
             </div>
 
-            <div class="product-card" onclick="selectProduct(this, '50 + 5 💎', 10305)">
-                <div class="badge">+45 birinchi xarid</div>
+            <div class="product-card" data-base-uzs="10305" data-name-uz="50 + 5 💎" data-name-ru="50 + 5 💎" data-name-en="50 + 5 💎" onclick="selectProduct(this)">
+                <div class="badge" data-badge-uz="+45 birinchi xarid" data-badge-ru="+45 перв. покупка" data-badge-en="+45 first topup">+45 birinchi xarid</div>
                 <div class="prod-title">50 + 5 💎</div>
                 <div class="prod-price">10 305 UZS</div>
             </div>
 
-            <div class="product-card" onclick="selectProduct(this, '150 + 15 💎', 30808)">
-                <div class="badge">+135 birinchi xarid</div>
+            <div class="product-card" data-base-uzs="30808" data-name-uz="150 + 15 💎" data-name-ru="150 + 15 💎" data-name-en="150 + 15 💎" onclick="selectProduct(this)">
+                <div class="badge" data-badge-uz="+135 birinchi xarid" data-badge-ru="+135 перв. покупка" data-badge-en="+135 first topup">+135 birinchi xarid</div>
                 <div class="prod-title">150 + 15 💎</div>
                 <div class="prod-price">30 808 UZS</div>
             </div>
 
-            <div class="product-card" onclick="selectProduct(this, '257 💎', 46494)">
+            <div class="product-card" data-base-uzs="46494" data-name-uz="257 💎" data-name-ru="257 💎" data-name-en="257 💎" onclick="selectProduct(this)">
                 <div class="prod-title">257 💎 (234 + 23)</div>
                 <div class="prod-price">46 494 UZS</div>
             </div>
 
-            <div class="product-card" onclick="selectProduct(this, '706 💎', 125460)">
+            <div class="product-card" data-base-uzs="125460" data-name-uz="706 💎" data-name-ru="706 💎" data-name-en="706 💎" onclick="selectProduct(this)">
                 <div class="prod-title">706 💎 (625 + 81)</div>
                 <div class="prod-price">125 460 UZS</div>
             </div>
@@ -90,34 +98,26 @@
     <!-- 2. HAMYON SAHIFASI -->
     <div id="page-wallet" class="page" style="display: none;">
         <div class="wallet-card">
-            <h3>Joriy balans</h3>
-            <div class="wallet-amount">0 UZS</div>
-            <button class="action-btn" onclick="fillBalance()">+ Balansni to'ldirish (Payme / Click)</button>
+            <h3 id="txt-wallet-title">Joriy balans</h3>
+            <div class="wallet-amount" id="wallet-balance-disp">0 UZS</div>
+            <button class="action-btn" onclick="fillBalance()" id="txt-topup-action">+ Balansni to'ldirish (Payme / Click)</button>
         </div>
     </div>
 
     <!-- 3. TARIX SAHIFASI -->
     <div id="page-history" class="page" style="display: none;">
-        <div class="section-title">XARIDLAR TARIXI</div>
+        <div class="section-title" id="txt-history-title">XARIDLAR TARIXI</div>
         <div class="history-list" id="history-list">
-            <p class="empty-text">Hozircha xaridlar tarixi mavjud emas.</p>
+            <p class="empty-text" id="txt-history-empty">Hozircha xaridlar tarixi mavjud emas.</p>
         </div>
     </div>
 
-    <!-- 4. PROFIL VA SOZLAMALAR SAHIFASI -->
+    <!-- 4. PROFIL SAHIFASI -->
     <div id="page-profile" class="page" style="display: none;">
         <div class="profile-menu">
-            <div class="menu-item" onclick="changeLang()">
-                <i class="fa-solid fa-globe"></i>
-                <span>Tilni o'zgartirish (UZ / RU)</span>
-            </div>
-            <div class="menu-item" onclick="changeCurrency()">
-                <i class="fa-solid fa-coins"></i>
-                <span>Valyutani o'zgartirish (UZS)</span>
-            </div>
             <div class="menu-item" onclick="contactSupport()">
                 <i class="fa-solid fa-headset"></i>
-                <span>Qo'llab-quvvatlash</span>
+                <span id="txt-support-btn">Qo'llab-quvvatlash</span>
             </div>
         </div>
     </div>
@@ -133,19 +133,19 @@
     <div class="bottom-nav">
         <div class="nav-item active" onclick="switchPage('home')">
             <i class="fa-solid fa-border-all"></i>
-            <span>Bosh sahifa</span>
+            <span id="nav-home">Bosh sahifa</span>
         </div>
         <div class="nav-item" onclick="switchPage('wallet')">
             <i class="fa-solid fa-wallet"></i>
-            <span>Hamyon</span>
+            <span id="nav-wallet">Hamyon</span>
         </div>
         <div class="nav-item" onclick="switchPage('history')">
             <i class="fa-clock-rotate-left"></i>
-            <span>Tarix</span>
+            <span id="nav-history">Tarix</span>
         </div>
         <div class="nav-item" onclick="switchPage('profile')">
             <i class="fa-solid fa-user"></i>
-            <span>Profil</span>
+            <span id="nav-profile">Profil</span>
         </div>
     </div>
 
